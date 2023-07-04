@@ -1,14 +1,20 @@
 <!-- Creare un form che invii in GET la lunghezza della password. Una nostra funzione utilizzerà questo dato per generare una password casuale (composta da lettere, lettere maiuscole, numeri e simboli) da restituire all’utente. Scriviamo tutto (logica e layout) in un unico file index.php -->
 
 <?php 
-    if (!empty($_GET["passwordLenght"])) {
+    if (!empty($_GET["passwordLenght"]) & is_numeric($_GET["passwordLenght"]) === true) {
         $passwordLenght = $_GET["passwordLenght"];
     }
     
+    function createPassword($yourPasswordLenght) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,.-_=+/?!@#$%^&*(){}[]:;<>';
+        $password = '';
+        for ($i = 0; $i < $yourPasswordLenght; $i++ ) {
+            $index = rand(0,strlen($characters));
+            $password .= $characters[$index];
+        }
 
-    // function getPassword($yourPasswordLenght) {
-        
-    // }
+        return $password;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -88,7 +94,7 @@
         <div class="container bg-color-grey p-3 rounded-3">
             <div class="row">
                 <div class="col-12">
-                    <p class="mb-0">Your password is:</p>
+                    <p class="mb-0">Your password is: <?php createPassword($passwordLenght)?></p>
                 </div>
             </div>
         </div>
