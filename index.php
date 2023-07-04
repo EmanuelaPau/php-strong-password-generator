@@ -1,14 +1,12 @@
 <!-- Creare un form che invii in GET la lunghezza della password. Una nostra funzione utilizzerà questo dato per generare una password casuale (composta da lettere, lettere maiuscole, numeri e simboli) da restituire all’utente. Scriviamo tutto (logica e layout) in un unico file index.php -->
 
 <?php 
-    if (!empty($_GET["passwordLenght"]) & is_numeric($_GET["passwordLenght"]) === true) {
-        $passwordLenght = $_GET["passwordLenght"];
-    }
+    
     
     function createPassword($yourPasswordLenght) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,.-_=+/?!@#$%^&*(){}[]:;<>';
         $password = '';
-        for ($i = 0; $i < $yourPasswordLenght; $i++ ) {
+        for ($i = 0; $i <= $yourPasswordLenght; $i++ ) {
             $index = rand(0,strlen($characters));
             $password .= $characters[$index];
         }
@@ -30,6 +28,7 @@
 </head>
 <body>
     <main>
+        
        <div class="container">
             <div class="row">
                 <div class="col-12 mt-5">
@@ -42,6 +41,23 @@
                 </div>
             </div>
        </div>
+
+       <?php 
+            if (!empty($_GET["passwordLenght"]) & is_numeric($_GET["passwordLenght"]) === true) { 
+                            $passwordLenght = $_GET["passwordLenght"];
+            ?>
+                <div class="container bg-color-grey p-3 rounded-3 mb-4">
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="mb-0">Your password is: <span class="bg-color-light-blue px-2 py-1 rounded-2"><?php echo createPassword($passwordLenght)?></span>
+                        </p>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+                
+           
+
        <div class="container mb-5">
             <form class="row bg-color-grey px-3 py-4 rounded-3 d-flex mb-5" method="GET" name="passwordGeneratorForm">
                 <div class="col-6 d-flex align-items-center mb-3">
@@ -90,14 +106,6 @@
             </form>    
 
        </div>
-
-        <div class="container bg-color-grey p-3 rounded-3">
-            <div class="row">
-                <div class="col-12">
-                    <p class="mb-0">Your password is: <?php createPassword($passwordLenght)?></p>
-                </div>
-            </div>
-        </div>
     </main>
 </body>
 </html>
