@@ -1,3 +1,16 @@
+<!-- Creare un form che invii in GET la lunghezza della password. Una nostra funzione utilizzerà questo dato per generare una password casuale (composta da lettere, lettere maiuscole, numeri e simboli) da restituire all’utente. Scriviamo tutto (logica e layout) in un unico file index.php -->
+
+<?php 
+    if (!empty($_GET["passwordLenght"])) {
+        $passwordLenght = $_GET["passwordLenght"];
+    }
+    
+
+    // function getPassword($yourPasswordLenght) {
+        
+    // }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,12 +37,12 @@
             </div>
        </div>
        <div class="container mb-5">
-            <form class="row bg-color-grey px-3 py-4 rounded-3 d-flex mb-5">
+            <form class="row bg-color-grey px-3 py-4 rounded-3 d-flex mb-5" method="GET" name="passwordGeneratorForm">
                 <div class="col-6 d-flex align-items-center mb-3">
                     <label for="exampleInputEmail1"><Label>Lunghezza password:</Label>
                 </div>                
                 <div class="col-6 mb-3">
-                    <input type="email" class="form-control w-50" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                    <input type="number" class="form-control w-50" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" name="passwordLenght">
                 </div>
 
                 <div class="col-6 d-flex mb-3">
@@ -63,14 +76,22 @@
                 </div>
 
                 <div class="col-4">
-                    <button type="button" class="btn btn-primary">Invia</button>
-                    <button type="button" class="btn btn-secondary">Annulla</button>
+                    <button type="send" class="btn btn-primary">Invia</button>
+                    <button type="send" class="btn btn-secondary">Annulla</button>
                 </div>
                     
                 
             </form>    
 
        </div>
+
+        <div class="container bg-color-grey p-3 rounded-3">
+            <div class="row">
+                <div class="col-12">
+                    <p class="mb-0">Your password is:</p>
+                </div>
+            </div>
+        </div>
     </main>
 </body>
 </html>
